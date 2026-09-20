@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>王子睿 · 个人主页</title>
+<meta name="description" content="王子睿，上海交通大学本科生，日语 × 行政管理。研究分析 · 数据处理 · 项目推进。" />
+<style>
+  :root {
+    --bg: #faf8f4;
+    --bg-soft: #f3efe8;
+    --card: #ffffff;
+    --ink: #23211d;
+    --ink-2: #4a463f;
+    --muted: #8a857c;
+    --accent: #b3402e;
+    --accent-deep: #93301f;
+    --accent-soft: #f6e9e5;
+    --gold: #a9864f;
+    --line: #e9e3d8;
+    --line-strong: #d9d1c2;
+    --serif: "Songti SC", "STSong", "Noto Serif SC", "SimSun", "Times New Roman", serif;
+    --sans: -apple-system, BlinkMacSystemFont, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Arial, sans-serif;
+    --shadow-sm: 0 1px 2px rgba(35, 33, 29, 0.04), 0 2px 8px rgba(35, 33, 29, 0.04);
+    --shadow-md: 0 2px 6px rgba(35, 33, 29, 0.05), 0 12px 32px rgba(35, 33, 29, 0.08);
+    --radius: 16px;
+    --maxw: 1080px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--bg);
+    color: var(--ink);
+    line-height: 1.75;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    font-size: 16px;
+  }
+
+  ::selection { background: var(--accent); color: #fff; }
+
+  a { color: inherit; text-decoration: none; }
+
+  .container { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 28px; }
+
+  /* ---------- 顶部导航 ---------- */
+  .nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    background: rgba(250, 248, 244, 0.86);
+    backdrop-filter: saturate(180%) blur(14px);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid transparent;
+    transition: border-color .3s ease, box-shadow .3s ease;
+  }
+  .nav.scrolled { border-bottom-color: var(--line); box-shadow: 0 4px 24px rgba(35,33,29,.05); }
+  .nav-inner {
+    display: flex; align-items: center; justify-content: space-between;
+    height: 64px;
+  }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 700; font-size: 18px; letter-spacing: .02em; }
+  .brand .seal {
+    width: 30px; height: 30px; border-radius: 7px;
+    background: var(--accent); color: #fff;
+    display: grid; place-items: center;
+    font-family: var(--serif); font-size: 16px; line-height: 1;
+    box-shadow: inset 0 0 0 1.5px rgba(255,255,255,.28);
+  }
+  .nav-links { display: flex; align-items: center; gap: 6px; }
+  .nav-links a {
+    font-size: 14.5px; color: var(--ink-2);
+    padding: 7px 13px; border-radius: 999px;
+    transition: color .2s ease, background .2s ease;
+  }
+  .nav-links a:hover { color: var(--accent); background: var(--accent-soft); }
+  .nav-cta {
+    background: var(--ink); color: #fff !important;
+    padding: 8px 16px !important; border-radius: 999px !important;
+    font-weight: 500;
+  }
+  .nav-cta:hover { background: var(--accent) !important; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    padding: 150px 0 72px;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: "";
+    position: absolute; inset: 0;
+    background:
+      radial-gradient(1200px 500px at 85% -10%, rgba(179,64,46,.07), transparent 60%),
+      radial-gradient(800px 400px at -5% 20%, rgba(169,134,79,.08), transparent 55%);
+    pointer-events: none;
+  }
+  .hero-grid {
+    position: relative;
+    display: grid; grid-template-columns: 1.15fr .85fr;
+    gap: 48px; align-items: center;
+  }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 13px; letter-spacing: .14em; text-transform: uppercase;
+    color: var(--accent); font-weight: 600;
+    margin-bottom: 22px;
+  }
+  .eyebrow::before { content: ""; width: 26px; height: 1.5px; background: var(--accent); }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(40px, 6vw, 62px);
+    font-weight: 700; line-height: 1.12;
+    letter-spacing: .01em; color: var(--ink);
+    margin-bottom: 18px;
+  }
+  .hero h1 .accent { color: var(--accent); }
+  .hero-subtitle {
+    font-size: 18px; color: var(--ink-2); font-weight: 500;
+    margin-bottom: 14px;
+  }
+  .hero-desc { font-size: 15.5px; color: var(--muted); max-width: 540px; margin-bottom: 30px; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 12px; margin-bottom: 34px; }
+  .contact-item {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 14px; color: var(--ink-2);
+    background: var(--card); border: 1px solid var(--line);
+    padding: 9px 16px; border-radius: 999px;
+    transition: border-color .2s, transform .2s, box-shadow .2s;
+    box-shadow: var(--shadow-sm);
+  }
+  .contact-item:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: var(--shadow-md); }
+  .contact-item svg { width: 16px; height: 16px; color: var(--accent); flex: none; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    font-size: 15px; font-weight: 600;
+    padding: 13px 26px; border-radius: 999px;
+    transition: transform .2s, box-shadow .2s, background .2s;
+    cursor: pointer;
+  }
+  .btn-primary { background: var(--accent); color: #fff; box-shadow: 0 6px 18px rgba(179,64,46,.28); }
+  .btn-primary:hover { background: var(--accent-deep); transform: translateY(-2px); box-shadow: 0 10px 26px rgba(179,64,46,.34); }
+  .btn-ghost { background: transparent; color: var(--ink); border: 1px solid var(--line-strong); }
+  .btn-ghost:hover { border-color: var(--ink); transform: translateY(-2px); }
+
+  /* 右侧：印章卡片 */
+  .hero-visual { display: flex; justify-content: center; }
+  .seal-card {
+    position: relative;
+    width: 100%; max-width: 340px; aspect-ratio: 1 / 1;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 24px;
+    box-shadow: var(--shadow-md);
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; padding: 40px;
+  }
+  .seal-card .photo-frame {
+    width: 190px; height: 190px;
+    border-radius: 50%;
+    padding: 6px;
+    background: linear-gradient(140deg, #c14a34, #9b2f1e);
+    box-shadow: 0 12px 30px rgba(179,64,46,.28);
+    margin-bottom: 26px;
+  }
+  .seal-card .photo-frame img {
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    filter: grayscale(12%) contrast(1.02);
+  }
+  .seal-card .name-en {
+    font-family: var(--serif); font-size: 17px; letter-spacing: .18em;
+    color: var(--ink); text-transform: uppercase; margin-bottom: 6px;
+  }
+  .seal-card .name-jp { font-size: 13.5px; color: var(--muted); letter-spacing: .05em; }
+  .seal-card .divider { width: 42px; height: 1.5px; background: var(--accent); margin: 16px 0; }
+
+  /* ---------- 统计条 ---------- */
+  .stats {
+    margin-top: 8px;
+    border-top: 1px solid var(--line);
+    border-bottom: 1px solid var(--line);
+    background: var(--bg-soft);
+  }
+  .stats-inner {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    padding: 28px 0;
+  }
+  .stat { text-align: center; padding: 0 16px; border-right: 1px solid var(--line); }
+  .stat:last-child { border-right: none; }
+  .stat .num { font-family: var(--serif); font-size: 30px; font-weight: 700; color: var(--ink); line-height: 1.1; }
+  .stat .num small { font-size: 15px; color: var(--muted); font-weight: 500; }
+  .stat .label { font-size: 13px; color: var(--muted); margin-top: 6px; letter-spacing: .02em; }
+
+  /* ---------- 通用区块 ---------- */
+  section { padding: 80px 0; }
+  .section-head { margin-bottom: 44px; }
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-size: 13px; font-weight: 600; letter-spacing: .16em; text-transform: uppercase;
+    color: var(--accent); margin-bottom: 14px;
+  }
+  .section-tag .idx { font-family: var(--serif); color: var(--muted); letter-spacing: .05em; }
+  .section-title { font-family: var(--serif); font-size: clamp(28px, 4vw, 36px); font-weight: 700; color: var(--ink); line-height: 1.2; }
+
+  /* ---------- 教育 ---------- */
+  .edu-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 40px;
+    box-shadow: var(--shadow-sm);
+    display: grid; grid-template-columns: 1.4fr 1fr; gap: 32px;
+  }
+  .edu-main .school { font-family: var(--serif); font-size: 24px; font-weight: 700; margin-bottom: 4px; }
+  .edu-main .major { font-size: 15.5px; color: var(--ink-2); margin-bottom: 18px; }
+  .edu-desc { font-size: 14.5px; color: var(--muted); }
+  .edu-side {
+    border-left: 1px solid var(--line);
+    padding-left: 32px;
+    display: flex; flex-direction: column; justify-content: center; gap: 18px;
+  }
+  .edu-side .period { font-size: 14px; color: var(--muted); display: flex; align-items: center; gap: 8px; }
+  .edu-side .period svg { width: 15px; height: 15px; color: var(--accent); }
+  .course-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .course-tag {
+    font-size: 12.5px; color: var(--ink-2);
+    background: var(--bg-soft); border: 1px solid var(--line);
+    padding: 5px 12px; border-radius: 999px;
+  }
+  .course-tag b { color: var(--accent); font-weight: 700; }
+
+  /* ---------- 卡片网格 ---------- */
+  .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .cards-2 { grid-template-columns: repeat(2, 1fr); }
+  .card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 30px;
+    box-shadow: var(--shadow-sm);
+    display: flex; flex-direction: column;
+    transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+    position: relative; overflow: hidden;
+  }
+  .card::before {
+    content: ""; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: linear-gradient(90deg, var(--accent), transparent 70%);
+    opacity: 0; transition: opacity .25s ease;
+  }
+  .card:hover { transform: translateY(-6px); box-shadow: var(--shadow-md); border-color: var(--line-strong); }
+  .card:hover::before { opacity: 1; }
+  .card-role {
+    font-size: 12.5px; font-weight: 600; letter-spacing: .06em;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .card-title { font-family: var(--serif); font-size: 19px; font-weight: 700; line-height: 1.35; margin-bottom: 6px; }
+  .card-meta { font-size: 13px; color: var(--muted); margin-bottom: 16px; display: flex; align-items: center; gap: 6px; }
+  .card-meta svg { width: 14px; height: 14px; }
+  .card-body { font-size: 14px; color: var(--ink-2); }
+  .card-body ul { list-style: none; }
+  .card-body li { position: relative; padding-left: 18px; margin-bottom: 9px; }
+  .card-body li:last-child { margin-bottom: 0; }
+  .card-body li::before {
+    content: ""; position: absolute; left: 0; top: .72em;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--gold);
+  }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-top: auto; padding-top: 18px; }
+  .chip { font-size: 12px; color: var(--ink-2); background: var(--bg-soft); border: 1px solid var(--line); padding: 4px 11px; border-radius: 999px; }
+
+  /* ---------- 技能 ---------- */
+  .skill-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .skill-card {
+    background: var(--card); border: 1px solid var(--line);
+    border-radius: var(--radius); padding: 30px;
+    box-shadow: var(--shadow-sm);
+  }
+  .skill-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--accent-soft); color: var(--accent);
+    display: grid; place-items: center; margin-bottom: 18px;
+  }
+  .skill-icon svg { width: 22px; height: 22px; }
+  .skill-card h3 { font-family: var(--serif); font-size: 18px; font-weight: 700; margin-bottom: 12px; }
+  .skill-card p { font-size: 14px; color: var(--ink-2); }
+
+  /* ---------- 页脚 ---------- */
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 48px 0;
+    background: var(--bg-soft);
+  }
+  .footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
+  .footer-brand { display: flex; align-items: center; gap: 10px; font-family: var(--serif); font-weight: 700; }
+  .footer-brand .seal { width: 28px; height: 28px; border-radius: 6px; background: var(--accent); color: #fff; display: grid; place-items: center; font-size: 15px; }
+  .footer-note { font-size: 13px; color: var(--muted); }
+  .back-top { font-size: 13.5px; color: var(--ink-2); display: inline-flex; align-items: center; gap: 6px; transition: color .2s; }
+  .back-top:hover { color: var(--accent); }
+
+  /* ---------- 动画 ---------- */
+  .reveal { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+  .reveal.visible { opacity: 1; transform: none; }
+
+  /* ---------- 响应式 ---------- */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .hero { padding: 130px 0 56px; }
+    .hero-visual { order: -1; }
+    .seal-card { max-width: 240px; }
+    .cards, .cards-2, .skill-grid { grid-template-columns: 1fr; }
+    .edu-card { grid-template-columns: 1fr; }
+    .edu-side { border-left: none; padding-left: 0; border-top: 1px solid var(--line); padding-top: 24px; }
+    .stats-inner { grid-template-columns: repeat(2, 1fr); gap: 24px 0; }
+    .stat:nth-child(2) { border-right: none; }
+  }
+  @media (max-width: 560px) {
+    .nav-links a:not(.nav-cta) { display: none; }
+    .hero h1 { font-size: 38px; }
+    .stats-inner { grid-template-columns: 1fr 1fr; }
+    section { padding: 60px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- 导航 -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#top" class="brand"><span class="seal">睿</span>王子睿</a>
+    <div class="nav-links">
+      <a href="#education">教育</a>
+      <a href="#research">研究</a>
+      <a href="#practice">实践</a>
+      <a href="#skills">技能</a>
+      <a href="#contact" class="nav-cta">联系我</a>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<header class="hero" id="top">
+  <div class="container hero-grid">
+    <div>
+      <span class="eyebrow">Personal Portfolio</span>
+      <h1>你好，我是<span class="accent">王子睿</span></h1>
+      <p class="hero-subtitle">上海交通大学本科生 · 日语 × 行政管理</p>
+      <p class="hero-desc">擅长将资料研究转化为结构化判断，具备研究分析、数据处理与项目推进的综合能力，关注跨文化传播与数智技术的社会应用。</p>
+      <div class="contact-row">
+        <a class="contact-item" href="tel:13930117876">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          139 3011 7876
+        </a>
+        <a class="contact-item" href="mailto:wzr060914@sjtu.edu.cn">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          wzr060914@sjtu.edu.cn
+        </a>
+      </div>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#research">
+          查看我的项目
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+        </a>
+        <a class="btn btn-ghost" href="resume.docx" download="王子睿-简历.docx">下载简历</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="seal-card">
+        <div class="photo-frame"><img src="photo.jpg" alt="王子睿的照片" /></div>
+        <div class="name-en">Wang Zirui</div>
+        <div class="name-jp">上海交通大学 · SJTU</div>
+        <div class="divider"></div>
+        <div class="name-jp">研究分析 · 数据处理 · 项目推进</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- 统计条 -->
+<div class="stats">
+  <div class="container stats-inner">
+    <div class="stat"><div class="num">4.09<small> / 4.30</small></div><div class="label">GPA</div></div>
+    <div class="stat"><div class="num">第 1 名</div><div class="label">专业排名</div></div>
+    <div class="stat"><div class="num">93.7<small> / 100</small></div><div class="label">核心学积分</div></div>
+    <div class="stat"><div class="num">日语×行管</div><div class="label">双专业方向</div></div>
+  </div>
+</div>
+
+<!-- 教育背景 -->
+<section id="education">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="idx">01</span> Education</div>
+      <h2 class="section-title">教育背景</h2>
+    </div>
+    <div class="edu-card reveal">
+      <div class="edu-main">
+        <div class="school">上海交通大学</div>
+        <div class="major">日语 + 行政管理（本科）</div>
+        <p class="edu-desc">跨学科训练覆盖语言文化、公共管理与辅修财务管理，注重将资料研究转化为结构化判断，具备扎实的学术写作与研究汇报能力。</p>
+      </div>
+      <div class="edu-side">
+        <div class="period">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          2025.09 – 2029.06（预计）
+        </div>
+        <div class="course-tags">
+          <span class="course-tag">微积分基础 <b>97</b></span>
+          <span class="course-tag">日语技能训练 <b>98</b></span>
+          <span class="course-tag">概率统计 <b>96</b></span>
+          <span class="course-tag">人工智能 <b>96</b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 研究项目 -->
+<section id="research">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="idx">02</span> Research &amp; Projects</div>
+      <h2 class="section-title">研究与项目经历</h2>
+    </div>
+    <div class="cards reveal">
+      <div class="card">
+        <div class="card-role">项目组组长</div>
+        <div class="card-title">大学生创新创业训练计划</div>
+        <div class="card-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          2025.10 – 至今
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>围绕上海地区 15 所"双一流"高校，构建"数智技术赋能大学生学术写作"的研究框架。</li>
+            <li>组织团队开展文献检索、主题汇报与阶段成果整合，负责进度协调与导师沟通。</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="chip">研究框架</span>
+          <span class="chip">团队管理</span>
+          <span class="chip">学术写作</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-role">创意负责人</div>
+        <div class="card-title">"天翼云杯"应用创新大赛</div>
+        <div class="card-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+          上海市大学生应用创新大赛
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>聚焦孤独症儿童等特殊群体的教育需求，提出教育型 AI 产品方向。</li>
+            <li>负责方案推进与逻辑整合，增强项目方案的一致性与可落地性。</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="chip">AI 产品</span>
+          <span class="chip">特殊教育</span>
+          <span class="chip">方案设计</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-role">创意负责人</div>
+        <div class="card-title">"讲好中国故事"跨文化传播研究</div>
+        <div class="card-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+          跨文化传播
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>构建日本"武士文化"与中国"武侠文化"的比较框架，围绕价值观、叙事原型与海外接受展开分析。</li>
+            <li>使用 Python 辅助整理研究材料，提出文化国际传播的内容与叙事策略建议。</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="chip">跨文化传播</span>
+          <span class="chip">比较研究</span>
+          <span class="chip">Python</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 竞赛与实践 -->
+<section id="practice">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="idx">03</span> Competition &amp; Practice</div>
+      <h2 class="section-title">竞赛与校园实践</h2>
+    </div>
+    <div class="cards cards-2 reveal">
+      <div class="card">
+        <div class="card-role">优秀成员</div>
+        <div class="card-title">复旦国金国际万花筒创新论坛暨挑战赛</div>
+        <div class="card-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8"/><path d="M12 17v4"/><path d="M17 3H7a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/></svg>
+          国际创新论坛
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>参与选题论证、资料筛选与研究结构设计，梳理关键问题、证据链和汇报逻辑，推动团队形成完整分析框架。</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="chip">选题论证</span>
+          <span class="chip">研究设计</span>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-role">接待组负责人</div>
+        <div class="card-title">能源学院校友会年会</div>
+        <div class="card-meta">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          校园活动组织
+        </div>
+        <div class="card-body">
+          <ul>
+            <li>设计并执行签到、身份核验与人员分流流程，在人流集中的情况下动态调整分工，保障现场接待有序。</li>
+          </ul>
+        </div>
+        <div class="card-tags">
+          <span class="chip">活动组织</span>
+          <span class="chip">流程设计</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 技能 -->
+<section id="skills">
+  <div class="container">
+    <div class="section-head reveal">
+      <div class="section-tag"><span class="idx">04</span> Skills</div>
+      <h2 class="section-title">技能与能力</h2>
+    </div>
+    <div class="skill-grid reveal">
+      <div class="skill-card">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+        </div>
+        <h3>数据与工具</h3>
+        <p>Python（数据清洗、基础可视化、网页信息抓取）、Excel（函数与数据整理）、PowerPoint、Word。</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m5 8 6 6"/><path d="m4 14 6-6 2-3"/><path d="M2 5h12"/><path d="M7 2h1"/><path d="m22 22-5-10-5 10"/><path d="M14 18h6"/></svg>
+        </div>
+        <h3>语言与研究</h3>
+        <p>中文母语；日语专业学习；具备英文文献检索与阅读能力；熟悉文献综述、结构化写作与研究汇报。</p>
+      </div>
+      <div class="skill-card">
+        <div class="skill-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+        </div>
+        <h3>内容与设计</h3>
+        <p>具备摄影、Photoshop 与公众号内容运营经验，能够独立完成文字、视觉与展示材料的整合。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 页脚 -->
+<footer id="contact">
+  <div class="container footer-inner">
+    <div class="footer-brand"><span class="seal">睿</span> 王子睿 · 个人主页</div>
+    <div class="footer-note">© 2026 王子睿 · 上海交通大学 · 日语 × 行政管理</div>
+    <a class="back-top" href="#top">
+      回到顶部
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+    </a>
+  </div>
+</footer>
+
+<script>
+  // 导航栏滚动状态
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav.classList.toggle('scrolled', window.scrollY > 20);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  // 滚动渐入动画
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
